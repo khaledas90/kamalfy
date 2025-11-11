@@ -5,12 +5,9 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import Providers from "./providers";
-import { Toaster as SonnerToaster } from "sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-import { Footer } from "@/components/Layout/footer/footer";
-import { Header } from "@/components/Layout/header/header";
 
 const _geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 const _geistMono = Geist_Mono({
@@ -101,9 +98,7 @@ export default async function RootLayout({
               forcedTheme="light"
               disableTransitionOnChange
             >
-              {/* <SonnerToaster richColors position="top-right" /> */}
               <Toaster />
-              {/* <Toaster richColors position="top-right" /> */}
               <SidebarProvider>{children}</SidebarProvider>
             </ThemeProvider>
           </Providers>
