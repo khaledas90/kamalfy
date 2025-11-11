@@ -5,7 +5,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import Providers from "./providers";
-import { Toaster } from "sonner";
+import { Toaster as SonnerToaster } from "sonner";
+import { Toaster } from "@/components/ui/toaster";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Footer } from "@/components/Layout/footer/footer";
@@ -95,7 +96,8 @@ export default async function RootLayout({
               disableTransitionOnChange
             >
               <Header />
-              <Toaster richColors position="top-right" />
+              <SonnerToaster richColors position="top-right" />
+              <Toaster />
               <SidebarProvider>{children}</SidebarProvider>
               <Footer />
             </ThemeProvider>

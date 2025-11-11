@@ -60,12 +60,14 @@ export function Header() {
 
           <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center gap-4">
-              <Button
-                size="sm"
-                className="gradient-bg text-white border-0 hover:opacity-90"
-              >
-                {t("cta")}
-              </Button>
+              <Link href="/register">
+                <Button
+                  size="sm"
+                  className="w-full gradient-bg text-white border-0 hover:opacity-90"
+                >
+                  {t("cta")}
+                </Button>
+              </Link>
               <LanguageSwitcher />
             </div>
 
@@ -97,12 +99,14 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Button
-                size="sm"
-                className="w-full gradient-bg text-white border-0 hover:opacity-90"
-              >
-                {t("cta")}
-              </Button>
+              <Link href="/register">
+                <Button
+                  size="sm"
+                  className="w-full gradient-bg text-white border-0 hover:opacity-90"
+                >
+                  {t("cta")}
+                </Button>
+              </Link>
               <LanguageSwitcher />
             </div>
           </div>
