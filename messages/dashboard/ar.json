@@ -1,5 +1,47 @@
 {
   "dashboard": {
-    "clearing": "جاري حذف..."
+    "clearing": "جاري حذف...",
+    "overview": {
+      "title": "نظرة عامة على لوحة التحكم",
+      "breadcrumb": "لوحة التحكم",
+      "stats": {
+        "totalRevenue": "إجمالي الإيرادات",
+        "totalOrders": "إجمالي الطلبات",
+        "totalCustomers": "إجمالي العملاء",
+        "conversionRate": "معدل التحويل",
+        "fromLastMonth": "من الشهر الماضي"
+      },
+      "charts": {
+        "salesOverview": {
+          "title": "نظرة عامة على المبيعات",
+          "description": "اتجاهات المبيعات والإيرادات الشهرية",
+          "sales": "المبيعات",
+          "revenue": "الإيرادات"
+        },
+        "revenue": {
+          "title": "الإيرادات الأسبوعية",
+          "description": "تفصيل الإيرادات حسب اليوم"
+        },
+        "topProducts": {
+          "title": "أفضل المنتجات",
+          "description": "المنتجات الأفضل أداءً",
+          "total": "الإجمالي",
+          "productA": "المنتج أ",
+          "productB": "المنتج ب",
+          "productC": "المنتج ج",
+          "productD": "المنتج د"
+        }
+      },
+      "recentActivity": {
+        "title": "النشاط الأخير",
+        "description": "أحدث التحديثات والمعاملات",
+        "actions": {
+          "orderPlaced": "تم تقديم طلب جديد",
+          "newCustomer": "تم تسجيل عميل جديد",
+          "paymentReceived": "تم استلام الدفع",
+          "productUpdated": "تم تحديث المنتج"
+        }
+      }
+    }
   }
 }

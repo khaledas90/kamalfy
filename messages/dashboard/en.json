@@ -1,5 +1,47 @@
 {
   "dashboard": {
-    "clearing": "clearing..."
+    "clearing": "clearing...",
+    "overview": {
+      "title": "Dashboard Overview",
+      "breadcrumb": "Dashboard",
+      "stats": {
+        "totalRevenue": "Total Revenue",
+        "totalOrders": "Total Orders",
+        "totalCustomers": "Total Customers",
+        "conversionRate": "Conversion Rate",
+        "fromLastMonth": "from last month"
+      },
+      "charts": {
+        "salesOverview": {
+          "title": "Sales Overview",
+          "description": "Monthly sales and revenue trends",
+          "sales": "Sales",
+          "revenue": "Revenue"
+        },
+        "revenue": {
+          "title": "Weekly Revenue",
+          "description": "Revenue breakdown by day"
+        },
+        "topProducts": {
+          "title": "Top Products",
+          "description": "Best performing products",
+          "total": "Total",
+          "productA": "Product A",
+          "productB": "Product B",
+          "productC": "Product C",
+          "productD": "Product D"
+        }
+      },
+      "recentActivity": {
+        "title": "Recent Activity",
+        "description": "Latest updates and transactions",
+        "actions": {
+          "orderPlaced": "New order placed",
+          "newCustomer": "New customer registered",
+          "paymentReceived": "Payment received",
+          "productUpdated": "Product updated"
+        }
+      }
+    }
   }
 }
