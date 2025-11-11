@@ -32,9 +32,9 @@ export function AIEnhancedFeatures() {
       icon: Brain,
       title: t("advisor.title"),
       description: t("advisor.description"),
-      gradient: "from-purple-500/20 to-pink-500/20",
-      iconGradient: "from-purple-500 to-pink-500",
-      glow: "rgba(168, 85, 247, 0.3)",
+      gradient: "from-blue-500/20 to-cyan-500/20",
+      iconGradient: "from-blue-500 to-cyan-500",
+      glow: "rgba(59, 130, 246, 0.3)",
     },
     {
       icon: MessageSquare,
@@ -48,9 +48,9 @@ export function AIEnhancedFeatures() {
       icon: TrendingUp,
       title: t("pricing.title"),
       description: t("pricing.description"),
-      gradient: "from-emerald-500/20 to-teal-500/20",
-      iconGradient: "from-emerald-500 to-teal-500",
-      glow: "rgba(16, 185, 129, 0.3)",
+      gradient: "from-blue-500/20 to-cyan-500/20",
+      iconGradient: "from-blue-500 to-cyan-500",
+      glow: "rgba(59, 130, 246, 0.3)",
     },
   ];
 
@@ -161,7 +161,7 @@ export function AIEnhancedFeatures() {
                     animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
-                  <Icon className="relative z-10 w-7 h-7 text-primary" />
+                  <Icon className="relative z-10 w-7 h-7 text-blue-600" />
                 </motion.div>
 
                 <h3 className="text-xl font-bold text-foreground mb-4">

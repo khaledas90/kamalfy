@@ -38,8 +38,8 @@ export function FeaturesOverview() {
         t("ai.items.analytics"),
         t("ai.items.insights"),
       ],
-      gradient: "from-purple-500/10 to-pink-500/10",
-      iconColor: "text-purple-500",
+      gradient: "from-blue-500/10 to-cyan-500/10",
+      iconColor: "text-blue-500",
     },
     {
       icon: Settings,
@@ -50,8 +50,8 @@ export function FeaturesOverview() {
         t("operations.items.multiLang"),
         t("operations.items.integrations"),
       ],
-      gradient: "from-green-500/10 to-emerald-500/10",
-      iconColor: "text-green-500",
+      gradient: "from-blue-500/10 to-cyan-500/10",
+      iconColor: "text-blue-500",
     },
   ];
 

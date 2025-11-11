@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import {
   headerContainerVariants,
   headerVariants,
@@ -13,56 +14,58 @@ import {
 } from "../../../../utils/animations";
 
 export default function PricingPage() {
+  const t = useTranslations("common.pricingPage");
+
   const plans = [
     {
-      name: "Free Trial",
-      price: "$0",
-      period: "/month",
-      description: "Perfect for trying out our platform",
+      name: t("free.name"),
+      price: t("free.price"),
+      period: t("free.period"),
+      description: t("free.description"),
       highlighted: false,
       features: [
-        "Up to 100 products",
-        "Basic analytics",
-        "Email support",
-        "Standard integrations",
-        "Single store",
-        "14-day free trial",
+        t("free.features.products"),
+        t("free.features.analytics"),
+        t("free.features.support"),
+        t("free.features.integrations"),
+        t("free.features.store"),
+        t("free.features.trial"),
       ],
-      cta: "Start Free Trial",
+      cta: t("free.cta"),
     },
     {
-      name: "Monthly Plan",
-      price: "$49",
-      period: "/month",
-      description: "Most popular choice",
+      name: t("monthly.name"),
+      price: t("monthly.price"),
+      period: t("monthly.period"),
+      description: t("monthly.description"),
       highlighted: true,
       features: [
-        "Everything in Free",
-        "Unlimited products",
-        "AI features included",
-        "Priority support",
-        "Multi-store management",
-        "Custom integrations",
-        "Advanced analytics",
+        t("monthly.features.everything"),
+        t("monthly.features.products"),
+        t("monthly.features.ai"),
+        t("monthly.features.support"),
+        t("monthly.features.stores"),
+        t("monthly.features.integrations"),
+        t("monthly.features.analytics"),
       ],
-      cta: "Get Started",
+      cta: t("monthly.cta"),
     },
     {
-      name: "Yearly Plan",
-      price: "$39",
-      period: "/month billed yearly",
-      description: "Best value - Save 20%",
+      name: t("yearly.name"),
+      price: t("yearly.price"),
+      period: t("yearly.period"),
+      description: t("yearly.description"),
       highlighted: false,
       features: [
-        "All Monthly features",
-        "Advanced AI insights",
-        "Custom integrations",
-        "Dedicated account manager",
-        "API access",
-        "Priority support",
-        "Early access to features",
+        t("yearly.features.everything"),
+        t("yearly.features.insights"),
+        t("yearly.features.integrations"),
+        t("yearly.features.manager"),
+        t("yearly.features.api"),
+        t("yearly.features.support"),
+        t("yearly.features.early"),
       ],
-      cta: "Subscribe Yearly",
+      cta: t("yearly.cta"),
     },
   ];
 
@@ -81,14 +84,13 @@ export default function PricingPage() {
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4"
             variants={headerVariants}
           >
-            Simple, Transparent Pricing
+            {t("title")}
           </motion.h1>
           <motion.p
             className="text-lg text-muted-foreground max-w-2xl mx-auto"
             variants={headerVariants}
           >
-            Choose the plan that works best for your business. All plans include
-            a 14-day free trial with no credit card required.
+            {t("description")}
           </motion.p>
         </motion.div>
 
@@ -113,7 +115,7 @@ export default function PricingPage() {
               {plan.highlighted && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                   <span className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-medium">
-                    Most Popular
+                    {t("mostPopular")}
                   </span>
                 </div>
               )}
@@ -179,43 +181,39 @@ export default function PricingPage() {
           className="bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 lg:p-12"
         >
           <h2 className="text-3xl font-bold text-foreground text-center mb-12">
-            Frequently Asked Questions
+            {t("faq.title")}
           </h2>
           <div className="space-y-6 max-w-3xl mx-auto">
             <div>
               <h3 className="font-semibold text-foreground mb-2">
-                Can I change plans later?
+                {t("faq.changePlans.question")}
               </h3>
               <p className="text-muted-foreground">
-                Yes, you can upgrade or downgrade your plan at any time. Changes
-                will be reflected in your next billing cycle.
+                {t("faq.changePlans.answer")}
               </p>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-2">
-                What payment methods do you accept?
+                {t("faq.paymentMethods.question")}
               </h3>
               <p className="text-muted-foreground">
-                We accept all major credit cards, PayPal, and bank transfers for
-                annual plans.
+                {t("faq.paymentMethods.answer")}
               </p>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-2">
-                Is there a setup fee?
+                {t("faq.setupFee.question")}
               </h3>
               <p className="text-muted-foreground">
-                No, there are no setup fees or hidden costs. What you see is what
-                you pay.
+                {t("faq.setupFee.answer")}
               </p>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-2">
-                Do you offer refunds?
+                {t("faq.refunds.question")}
               </h3>
               <p className="text-muted-foreground">
-                Yes, we offer a 30-day money-back guarantee. If you're not
-                satisfied, contact us for a full refund.
+                {t("faq.refunds.answer")}
               </p>
             </div>
           </div>

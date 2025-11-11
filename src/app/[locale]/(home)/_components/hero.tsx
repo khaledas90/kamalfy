@@ -90,7 +90,7 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full overflow-hidden pt-16 pb-16 min-h-[80vh] flex items-center"
+      className="relative w-full overflow-hidden pt-16 pb-16 min-h-[90vh] flex items-center"
       aria-label="Hero Section"
     >
       <div className="absolute inset-0 -z-10 overflow-hidden">

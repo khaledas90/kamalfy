@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Star, Quote } from "lucide-react";
+import { Star } from "lucide-react";
 import Image from "next/image";
 import {
   containerVariants,
@@ -22,7 +22,7 @@ export function TestimonialsSection() {
       author: t("items.0.author"),
       role: t("items.0.role"),
       company: t("items.0.company"),
-      avatar: "/professional-avatar-woman.jpg",
+      avatar: "/placeholder.svg",
       rating: 5,
     },
     {
@@ -30,7 +30,7 @@ export function TestimonialsSection() {
       author: t("items.1.author"),
       role: t("items.1.role"),
       company: t("items.1.company"),
-      avatar: "/professional-avatar-man.jpg",
+      avatar: "/placeholder.svg",
       rating: 5,
     },
     {
@@ -38,7 +38,7 @@ export function TestimonialsSection() {
       author: t("items.2.author"),
       role: t("items.2.role"),
       company: t("items.2.company"),
-      avatar: "/professional-avatar-woman-smiling.jpg",
+      avatar: "/placeholder.svg",
       rating: 5,
     },
   ];
@@ -85,40 +85,42 @@ export function TestimonialsSection() {
               className="group relative bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 flex flex-col h-full hover:border-primary transition-all duration-300"
               variants={cardVariants}
             >
-              <div className="flex flex-row justify-between items-center gap-4">
-                <div className="flex items-center gap-4 pb-4 border-b border-border/50">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-border/50">
-                    <Image
-                      src={testimonial.avatar || "/placeholder.svg"}
-                      alt={testimonial.author}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm text-foreground">
-                      {testimonial.author}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {testimonial.role}, {testimonial.company}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-1 mb-6">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={16}
-                      className="fill-[#3b82f6]/20 text-[#3b82f6]/20"
-                    />
-                  ))}
-                </div>
+              {/* Rating Stars - Top */}
+              <div className="flex gap-1 mb-6">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={16}
+                    className="fill-primary/20 text-primary/20"
+                  />
+                ))}
               </div>
 
-              <div className="relative mb-6 flex-grow">
-                <p className="text-sm text-foreground leading-relaxed relative z-10">
-                  {testimonial.quote}
+              {/* Quote - Middle */}
+              <div className="flex-grow mb-6">
+                <p className="text-base text-foreground leading-relaxed">
+                  "{testimonial.quote}"
                 </p>
+              </div>
+
+              {/* Author Info - Bottom */}
+              <div className="flex items-center gap-4 pt-6 border-t border-border/50 mt-1">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-border/50 flex-shrink-0">
+                  <Image
+                    src={testimonial.avatar || "/placeholder.svg"}
+                    alt={testimonial.author}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p className="font-semibold text-sm text-foreground truncate">
+                    {testimonial.author}
+                  </p>
+                  <p className="text-xs text-muted-foreground truncate">
+                    {testimonial.role}, {testimonial.company}
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}

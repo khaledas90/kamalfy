@@ -1,6 +1,6 @@
 "use client"
 
-import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react"
+import { Facebook, Twitter, Linkedin, Instagram, Mail, MapPin } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/routing"
 
@@ -26,16 +26,15 @@ export function Footer() {
         { label: t("sections.company.links.contact"), href: "/contact-us" },
       ],
     },
-    resources: {
-      title: t("sections.resources.title"),
-      links: [
-        { label: t("sections.resources.links.documentation"), href: "#" },
-        { label: t("sections.resources.links.support"), href: "#" },
-        { label: t("sections.resources.links.privacy"), href: "#" },
-        { label: t("sections.resources.links.terms"), href: "#" },
-      ],
-    },
   }
+
+  const policyLinks = [
+    { label: t("sections.resources.links.privacy"), href: "/privacy-policy" },
+    { label: t("sections.resources.links.terms"), href: "/terms-of-service" },
+    { label: t("sections.resources.links.refund"), href: "/refund-policy" },
+    { label: t("sections.resources.links.cookie"), href: "/cookie-policy" },
+    { label: t("sections.resources.links.disclaimer"), href: "/disclaimer" },
+  ]
 
   const socials = [
     { icon: Twitter, href: "#", label: "Twitter" },
@@ -78,7 +77,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2-4: Links */}
+          {/* Column 2-3: Links */}
           {Object.entries(footerSections).map(([key, section]) => (
             <div key={key}>
               <h4 className="font-semibold mb-6 text-white">{section.title}</h4>
@@ -93,11 +92,44 @@ export function Footer() {
               </ul>
             </div>
           ))}
+
+          {/* Column 4: Contact */}
+          <div>
+            <h4 className="font-semibold mb-6 text-white">{t("sections.contact.title")}</h4>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <Mail className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" />
+                <a 
+                  href={`mailto:${t("sections.contact.email")}`}
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  {t("sections.contact.email")}
+                </a>
+              </div>
+              <div className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" />
+                <p className="text-gray-400 text-sm">
+                  {t("sections.contact.location")}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Bottom footer */}
         <div className="border-t border-white/10 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-gray-400">{t("copyright")}</p>
+          <div className="flex flex-wrap items-center gap-x-4 text-sm text-gray-400">
+            {policyLinks.map((link, index) => (
+              <Link 
+                key={index}
+                href={link.href} 
+                className="hover:text-white transition-colors whitespace-nowrap"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
