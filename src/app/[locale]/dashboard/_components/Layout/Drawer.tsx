@@ -2,9 +2,6 @@
 
 import Link from "next/link";
 import { useAllRoutes } from "./ItemLinks";
-import {
-  usePermissions,
-} from "@/components/permissions/ScreensPermissionsContext";
 import { ChevronRight } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
@@ -23,35 +20,41 @@ interface DrawerProps {
   isCollapsed?: boolean;
 }
 
-export default function Drawer({ currentPath, isRTL = false, isCollapsed = false }: DrawerProps) {
-  const { } = usePermissions();
+export default function Drawer({
+  currentPath,
+  isRTL = false,
+  isCollapsed = false,
+}: DrawerProps) {
   const routes = useAllRoutes();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-  
+
   // Load expanded items from localStorage on component mount
   useEffect(() => {
-    const savedExpandedItems = localStorage.getItem('sidebar-expanded-items');
+    const savedExpandedItems = localStorage.getItem("sidebar-expanded-items");
     if (savedExpandedItems) {
       try {
         const parsedItems = JSON.parse(savedExpandedItems);
         setExpandedItems(parsedItems);
       } catch (error) {
-        console.error('Error parsing saved expanded items:', error);
+        console.error("Error parsing saved expanded items:", error);
       }
     }
   }, []);
 
   // Save expanded items to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('sidebar-expanded-items', JSON.stringify(expandedItems));
+    localStorage.setItem(
+      "sidebar-expanded-items",
+      JSON.stringify(expandedItems)
+    );
   }, [expandedItems]);
 
   // Initialize GSAP animations and restore expanded state
   useEffect(() => {
     // Set initial state for all dropdowns
     const currentRefs = dropdownRefs.current;
-    
+
     // Use a timeout to ensure DOM is ready
     const timer = setTimeout(() => {
       Object.entries(currentRefs).forEach(([label, element]) => {
@@ -74,7 +77,7 @@ export default function Drawer({ currentPath, isRTL = false, isCollapsed = false
       gsap.killTweensOf(Object.values(currentRefs));
     };
   }, [expandedItems]);
-  
+
   const isActive = (href?: string): boolean => {
     if (!href) return false;
     const basePath = currentPath.split("/").slice(2).join("/") || "";
@@ -84,7 +87,7 @@ export default function Drawer({ currentPath, isRTL = false, isCollapsed = false
   const toggleExpand = (label: string) => {
     const dropdownElement = dropdownRefs.current[label];
     const isCurrentlyExpanded = expandedItems.includes(label);
-    
+
     if (isCurrentlyExpanded) {
       // Collapse animation
       gsap.to(dropdownElement, {
@@ -93,47 +96,49 @@ export default function Drawer({ currentPath, isRTL = false, isCollapsed = false
         duration: 0.3,
         ease: "power2.inOut",
         onComplete: () => {
-          setExpandedItems(prev => prev.filter(item => item !== label));
-        }
+          setExpandedItems((prev) => prev.filter((item) => item !== label));
+        },
       });
     } else {
       // Expand animation
-      setExpandedItems(prev => [...prev, label]);
-      
+      setExpandedItems((prev) => [...prev, label]);
+
       // Use a small delay to ensure the DOM is updated
       setTimeout(() => {
         if (dropdownElement) {
           // Set initial state
           gsap.set(dropdownElement, { height: 0, opacity: 0 });
-          
+
           // Get the natural height
           const naturalHeight = dropdownElement.scrollHeight;
-          
+
           // Animate to natural height with stagger for children
-          gsap.fromTo(dropdownElement, 
+          gsap.fromTo(
+            dropdownElement,
             { height: 0, opacity: 0 },
-            { 
-              height: naturalHeight, 
-              opacity: 1, 
-              duration: 0.4, 
+            {
+              height: naturalHeight,
+              opacity: 1,
+              duration: 0.4,
               ease: "power2.out",
               onComplete: () => {
                 gsap.set(dropdownElement, { height: "auto" });
-              }
+              },
             }
           );
 
           // Animate children with stagger
-          const children = dropdownElement.querySelectorAll('.menu-item');
-          gsap.fromTo(children, 
+          const children = dropdownElement.querySelectorAll(".menu-item");
+          gsap.fromTo(
+            children,
             { y: -10, opacity: 0 },
-            { 
-              y: 0, 
-              opacity: 1, 
-              duration: 0.3, 
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.3,
               stagger: 0.05,
               ease: "power2.out",
-              delay: 0.1
+              delay: 0.1,
             }
           );
         }
@@ -172,11 +177,11 @@ export default function Drawer({ currentPath, isRTL = false, isCollapsed = false
             {!isCollapsed && <span>{route.label}</span>}
           </div>
           {!isCollapsed && (
-            <div 
+            <div
               className="transition-transform duration-300 ease-in-out"
-              style={{ 
-                transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
-                transformOrigin: 'center'
+              style={{
+                transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+                transformOrigin: "center",
               }}
             >
               <ChevronRight className="h-4 w-4 ltr:rotate-0 rtl:-rotate-180" />
@@ -188,8 +193,8 @@ export default function Drawer({ currentPath, isRTL = false, isCollapsed = false
       return (
         <div key={route.label} className="menu-item overflow-hidden">
           {isCollapsed ? (
-            <Tooltip 
-              content={route.label} 
+            <Tooltip
+              content={route.label}
               placement={tooltipPlacement}
               color="primary"
               className="rounded-full"
@@ -200,15 +205,20 @@ export default function Drawer({ currentPath, isRTL = false, isCollapsed = false
             buttonElement
           )}
           {!isCollapsed && (
-            <div 
+            <div
               ref={(el) => {
                 dropdownRefs.current[route.label] = el;
               }}
               className="overflow-hidden"
-              style={{ height: isExpanded ? "auto" : 0, opacity: isExpanded ? 1 : 0 }}
+              style={{
+                height: isExpanded ? "auto" : 0,
+                opacity: isExpanded ? 1 : 0,
+              }}
             >
               <div className="mt-1 space-y-1">
-                {route.children?.map((child: RouteType) => renderMenuItem(child, level + 1))}
+                {route.children?.map((child: RouteType) =>
+                  renderMenuItem(child, level + 1)
+                )}
               </div>
             </div>
           )}
@@ -235,8 +245,8 @@ export default function Drawer({ currentPath, isRTL = false, isCollapsed = false
       return (
         <div key={route.label} className="menu-item overflow-hidden">
           {isCollapsed ? (
-            <Tooltip 
-              content={route.label} 
+            <Tooltip
+              content={route.label}
               placement={tooltipPlacement}
               color="primary"
               className="rounded-full"
@@ -252,9 +262,13 @@ export default function Drawer({ currentPath, isRTL = false, isCollapsed = false
   };
 
   return (
-    <div className={`h-full rtl:border-l ltr:border-r ${isCollapsed ? 'sidebar-collapsed' : 'sidebar-expanded'}`}>
+    <div
+      className={`h-full rtl:border-l ltr:border-r ${
+        isCollapsed ? "sidebar-collapsed" : "sidebar-expanded"
+      }`}
+    >
       <aside className="w-full bg-background overflow-x-hidden">
-        <nav 
+        <nav
           className={`grid gap-2 text-sm max-h-[calc(100vh-4rem)] overflow-y-auto overflow-x-hidden sidebar-scrollbar transition-all duration-300 ${
             isCollapsed ? "p-2" : "p-4"
           }`}

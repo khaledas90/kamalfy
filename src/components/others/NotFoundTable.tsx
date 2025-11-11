@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react";
 import { useTranslations } from "next-intl";
 
 const searchAnimation = `
@@ -28,14 +27,14 @@ export function TableNotFound() {
       <style jsx>{searchAnimation}</style>
       <div className="bg-muted relative flex h-24 w-24 items-center justify-center rounded-full">
         <div className="relative">
-          <Icon
+          {/* <Icon
             icon={"material-symbols:search-off"}
             className="text-muted-foreground h-20 w-20 animate-[pulse_2s_ease-in-out_infinite] rounded-full bg-[#c1c1c1] p-4"
             style={{
               transformOrigin: "center",
               animation: "search 3s ease-in-out infinite",
             }}
-          />
+          /> */}
           <span className="bg-muted-foreground/5 absolute inset-0 animate-ping rounded-full" />
         </div>
         <span className=" absolute -right-1 -top-1 flex h-8 w-8 animate-[bounce_1.5s_ease-in-out_infinite] items-center justify-center rounded-full bg-[#d01f1f] text-xl font-bold text-white">

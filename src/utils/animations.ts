@@ -134,7 +134,7 @@ export const slideUpVariants: Variants = {
   },
 };
 
-export const statVariants = {
+export const statVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 40,
@@ -147,7 +147,7 @@ export const statVariants = {
     transition: {
       delay: i * 0.1,
       duration: 0.7,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   }),
 };

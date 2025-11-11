@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { ChevronDown, Sparkles, Zap, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -19,7 +19,7 @@ export function HeroSection() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -30,19 +30,19 @@ export function HeroSection() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
 
-  const floatingVariants = {
+  const floatingVariants: Variants = {
     animate: {
       y: [0, -20, 0],
       rotate: [0, 5, -5, 0],
@@ -54,7 +54,7 @@ export function HeroSection() {
     },
   };
 
-  const glowVariants = {
+  const glowVariants: Variants = {
     animate: {
       scale: [1, 1.1, 1],
       opacity: [0.3, 0.5, 0.3],
@@ -66,7 +66,7 @@ export function HeroSection() {
     },
   };
 
-  const textRevealVariants = {
+  const textRevealVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
       opacity: 1,
@@ -74,7 +74,7 @@ export function HeroSection() {
       transition: {
         delay: i * 0.1,
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     }),
   };
@@ -319,7 +319,7 @@ export function HeroSection() {
             variants={itemVariants}
             initial={{ opacity: 0, scale: 0.9, x: 50 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
           >
             <motion.div
               className="absolute inset-0  rounded-3xl blur-3xl -z-10"
