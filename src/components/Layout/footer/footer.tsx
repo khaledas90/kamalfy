@@ -1,34 +1,38 @@
 "use client"
 
 import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/routing"
 
 export function Footer() {
+  const t = useTranslations("common.footer")
+  
   const footerSections = {
     product: {
-      title: "Product",
+      title: t("sections.product.title"),
       links: [
-        { label: "Features", href: "#" },
-        { label: "Pricing", href: "#" },
-        { label: "Demo", href: "#" },
-        { label: "Integrations", href: "#" },
+        { label: t("sections.product.links.features"), href: "/features" },
+        { label: t("sections.product.links.pricing"), href: "/pricing" },
+        { label: t("sections.product.links.demo"), href: "#" },
+        { label: t("sections.product.links.integrations"), href: "#" },
       ],
     },
     company: {
-      title: "Company",
+      title: t("sections.company.title"),
       links: [
-        { label: "About", href: "#" },
-        { label: "Blog", href: "#" },
-        { label: "Careers", href: "#" },
-        { label: "Contact", href: "#" },
+        { label: t("sections.company.links.about"), href: "/about-us" },
+        { label: t("sections.company.links.blog"), href: "#" },
+        { label: t("sections.company.links.careers"), href: "#" },
+        { label: t("sections.company.links.contact"), href: "/contact-us" },
       ],
     },
     resources: {
-      title: "Resources",
+      title: t("sections.resources.title"),
       links: [
-        { label: "Documentation", href: "#" },
-        { label: "Support", href: "#" },
-        { label: "Privacy Policy", href: "#" },
-        { label: "Terms of Service", href: "#" },
+        { label: t("sections.resources.links.documentation"), href: "#" },
+        { label: t("sections.resources.links.support"), href: "#" },
+        { label: t("sections.resources.links.privacy"), href: "#" },
+        { label: t("sections.resources.links.terms"), href: "#" },
       ],
     },
   }
@@ -47,15 +51,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 py-16">
           {/* Column 1: Branding */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                <span className="text-white font-bold">B</span>
+                <span className="text-white font-bold">K</span>
               </div>
-              <span className="text-xl font-bold">Boostify</span>
-            </div>
+              <span className="text-xl font-bold">Kamalfy</span>
+            </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
-              AI-powered eCommerce platform helping merchants sell smarter and grow faster with automation and
-              analytics.
+              {t("description")}
             </p>
             {/* Social icons */}
             <div className="flex gap-4 mt-6">
@@ -82,9 +85,9 @@ export function Footer() {
               <ul className="space-y-3">
                 {section.links.map((link, index) => (
                   <li key={index}>
-                    <a href={link.href} className="text-gray-400 hover:text-white transition-colors text-sm">
+                    <Link href={link.href} className="text-gray-400 hover:text-white transition-colors text-sm">
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -94,20 +97,7 @@ export function Footer() {
 
         {/* Bottom footer */}
         <div className="border-t border-white/10 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-gray-400">© 2025 Boostify. All rights reserved.</p>
-          {/* Language switcher */}
-          <div className="flex gap-4 text-sm">
-            <button
-              className="text-white hover:text-gray-300 transition-colors font-medium"
-              aria-label="Switch to English"
-            >
-              EN
-            </button>
-            <span className="text-gray-600">/</span>
-            <button className="text-gray-400 hover:text-white transition-colors" aria-label="Switch to Arabic">
-              العربية
-            </button>
-          </div>
+          <p className="text-sm text-gray-400">{t("copyright")}</p>
         </div>
       </div>
     </footer>

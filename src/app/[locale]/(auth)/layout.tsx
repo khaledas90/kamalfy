@@ -1,11 +1,11 @@
-import { Footer } from "@/components/Layout/footer";
-import { Navigation } from "@/components/Layout/header";
+import { Footer } from "@/components/Layout/footer/footer";
+import { Header } from "@/components/Layout/header/header";
 import { FC, PropsWithChildren } from "react";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
-      <Navigation />
+      <Header />
       {children}
       <Footer />
     </>

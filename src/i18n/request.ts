@@ -1,5 +1,5 @@
-import { getRequestConfig } from 'next-intl/server';
-import { routing } from './routing';
+import { getRequestConfig } from "next-intl/server";
+import { routing } from "./routing";
 
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale;
@@ -10,7 +10,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   const lang = locale;
 
-  const messagesPaths = ['common', 'auth', 'dashboard'];
+  const messagesPaths = ["common", "auth", "dashboard"];
 
   const messagesArray = await Promise.all(
     messagesPaths.map(async (path) => {

@@ -1,5 +1,213 @@
 {
   "common": {
-    "Cancel": "Cancel"
+    "hero": {
+      "badge": "AI-Powered eCommerce Platform",
+      "title": {
+        "line1": "Sell",
+        "line2": "Smarter.",
+        "line3": "Grow",
+        "line4": "Faster."
+      },
+      "description": "Kamalfy is your AI-driven eCommerce platform that automates sales, marketing, and customer engagement. Let AI work for your business while you focus on growth.",
+      "cta": {
+        "primary": "Get Started Free",
+        "secondary": "Watch Demo"
+      },
+      "stats": {
+        "trial": "14-day free trial",
+        "noCard": "No credit card required",
+        "merchants": "10,000+ merchants"
+      },
+      "scroll": "Scroll to explore"
+    },
+    "features": {
+      "title": "Everything You Need to Scale",
+      "description": "Comprehensive tools built for modern eCommerce merchants",
+      "marketing": {
+        "title": "Marketing & Growth",
+        "items": {
+          "coupons": "Smart Coupons & Discounts",
+          "cart": "Abandoned Cart Recovery",
+          "loyalty": "Loyalty & Rewards Points",
+          "email": "Email Marketing Automation"
+        }
+      },
+      "ai": {
+        "title": "AI & Personalization",
+        "items": {
+          "recommendations": "AI Product Recommendations",
+          "chat": "Smart Chat Assistant",
+          "analytics": "Predictive Analytics",
+          "insights": "Customer Behavior Insights"
+        }
+      },
+      "operations": {
+        "title": "Operations & Experience",
+        "items": {
+          "tracking": "Real-time Order Tracking",
+          "multiStore": "Multi-Store Management",
+          "multiLang": "Multi-language Support",
+          "integrations": "One-Click Integrations"
+        }
+      }
+    },
+    "aiFeatures": {
+      "badge": "AI-Powered",
+      "title": "AI That Works For You",
+      "description": "Powerful AI capabilities designed to boost your sales",
+      "advisor": {
+        "title": "AI Sales Advisor",
+        "description": "Get real-time recommendations on pricing, inventory, and promotions based on market trends"
+      },
+      "generator": {
+        "title": "AI Message Generator",
+        "description": "Create personalized marketing emails and product descriptions in seconds"
+      },
+      "pricing": {
+        "title": "AI Pricing Suggestion",
+        "description": "Optimize product pricing dynamically to maximize profit and conversions"
+      },
+      "learnMore": "Learn More"
+    },
+    "stats": {
+      "title": "Trusted by Growing Businesses",
+      "description": "Join thousands of merchants who are scaling their eCommerce with AI-powered tools",
+      "merchants": {
+        "value": "10,000+",
+        "label": "Active Merchants",
+        "description": "Growing businesses trust our platform"
+      },
+      "conversion": {
+        "value": "35%",
+        "label": "Avg. Conversion Increase",
+        "description": "Boost in sales for our customers"
+      },
+      "recovered": {
+        "value": "50K+",
+        "label": "Recovered Sales",
+        "description": "From abandoned carts monthly"
+      },
+      "countries": {
+        "value": "150+",
+        "label": "Countries Served",
+        "description": "Global reach, local support"
+      }
+    },
+    "pricing": {
+      "title": "Simple, Transparent Pricing",
+      "description": "Choose the plan that works best for your business",
+      "mostPopular": "Most Popular",
+      "free": {
+        "name": "Free Trial",
+        "price": "$0",
+        "period": "/month",
+        "description": "14-day free trial",
+        "cta": "Start Free Trial",
+        "features": {
+          "products": "Up to 100 products",
+          "analytics": "Basic analytics",
+          "support": "Email support",
+          "integrations": "Standard integrations",
+          "store": "Single store"
+        }
+      },
+      "monthly": {
+        "name": "Monthly Plan",
+        "price": "$49",
+        "period": "/month",
+        "description": "Most popular",
+        "cta": "Get Started",
+        "features": {
+          "everything": "Everything in Free",
+          "products": "Unlimited products",
+          "ai": "AI features included",
+          "support": "Priority support",
+          "stores": "Multi-store management",
+          "integrations": "Custom integrations"
+        }
+      },
+      "yearly": {
+        "name": "Yearly Plan",
+        "price": "$39",
+        "period": "/month billed yearly",
+        "description": "Save 20%",
+        "cta": "Subscribe Yearly",
+        "features": {
+          "everything": "All Monthly features",
+          "insights": "Advanced AI insights",
+          "integrations": "Custom integrations",
+          "manager": "Dedicated account manager",
+          "api": "API access",
+          "support": "Priority support"
+        }
+      },
+      "footer": "All plans include access to our knowledge base, community forum, and email support. No hidden fees."
+    },
+    "testimonials": {
+      "title": "Trusted by 10,000+ Merchants",
+      "description": "See what successful eCommerce entrepreneurs have to say",
+      "items": [
+        {
+          "quote": "Kamalfy increased our conversion rate by 35% in the first month. The AI recommendations are incredibly accurate.",
+          "author": "Sarah Chen",
+          "role": "Owner",
+          "company": "StyleHub Store"
+        },
+        {
+          "quote": "The abandoned cart recovery feature alone has recovered $50K in lost sales. Truly a game-changer for our business.",
+          "author": "Michael Torres",
+          "role": "Founder",
+          "company": "TechGear Co"
+        },
+        {
+          "quote": "Managing multiple stores is now effortless. The multi-store management feature has saved us countless hours.",
+          "author": "Emily Rodriguez",
+          "role": "Operations Manager",
+          "company": "Fashion Forward"
+        }
+      ]
+    },
+    "header": {
+      "nav": {
+        "features": "Features",
+        "about": "About",
+        "pricing": "Pricing",
+        "contact": "Contact"
+      },
+      "cta": "Get Started Free"
+    },
+    "footer": {
+      "description": "AI-powered eCommerce platform helping merchants sell smarter and grow faster with automation and analytics.",
+      "sections": {
+        "product": {
+          "title": "Product",
+          "links": {
+            "features": "Features",
+            "pricing": "Pricing",
+            "demo": "Demo",
+            "integrations": "Integrations"
+          }
+        },
+        "company": {
+          "title": "Company",
+          "links": {
+            "about": "About",
+            "blog": "Blog",
+            "careers": "Careers",
+            "contact": "Contact"
+          }
+        },
+        "resources": {
+          "title": "Resources",
+          "links": {
+            "documentation": "Documentation",
+            "support": "Support",
+            "privacy": "Privacy Policy",
+            "terms": "Terms of Service"
+          }
+        }
+      },
+      "copyright": "© 2025 Kamalfy. All rights reserved."
+    }
   }
 }

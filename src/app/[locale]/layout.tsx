@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Cairo } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
@@ -7,15 +8,26 @@ import Providers from "./providers";
 import { Toaster } from "sonner";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import { Footer } from "@/components/Layout/footer/footer";
+import { Header } from "@/components/Layout/header/header";
 
-const _geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
-const _geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" })
+const _geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
+const _geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+});
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  variable: "--font-cairo",
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Boostify | AI-Powered eCommerce Platform for Smarter Selling",
   description:
     "Sell smarter, grow faster with Boostify. AI-driven eCommerce platform with automation, analytics, and AI sales advisors to boost your online store sales.",
-  keywords: "eCommerce, AI, automation, sales, analytics, merchants, online store, sales platform",
+  keywords:
+    "eCommerce, AI, automation, sales, analytics, merchants, online store, sales platform",
   authors: [{ name: "Boostify" }],
   creator: "Boostify",
   openGraph: {
@@ -48,7 +60,7 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png",
   },
-}
+};
 
 export async function generateStaticParams() {
   const locales = ["en", "ar"];
@@ -70,10 +82,10 @@ export default async function RootLayout({
       <html
         lang={locale}
         dir={locale === "ar" ? "rtl" : "ltr"}
-        className={`${_geist.variable} ${_geistMono.variable}`}
+        className={`${locale === "ar" ? cairo.variable : _geist.variable} ${_geistMono.variable}`}
         suppressHydrationWarning
       >
-        <body className="antialiased">
+        <body className={`antialiased ${locale === "ar" ? "[font-family:var(--font-cairo)]" : ""}`}>
           <Providers>
             <ThemeProvider
               attribute="class"
@@ -82,8 +94,10 @@ export default async function RootLayout({
               forcedTheme="light"
               disableTransitionOnChange
             >
+              <Header />
               <Toaster richColors position="top-right" />
               <SidebarProvider>{children}</SidebarProvider>
+              <Footer />
             </ThemeProvider>
           </Providers>
         </body>
