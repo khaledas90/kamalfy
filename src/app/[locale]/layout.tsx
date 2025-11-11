@@ -94,10 +94,8 @@ export default async function RootLayout({
               forcedTheme="light"
               disableTransitionOnChange
             >
-              <Header />
               <Toaster richColors position="top-right" />
               <SidebarProvider>{children}</SidebarProvider>
-              <Footer />
             </ThemeProvider>
           </Providers>
         </body>
