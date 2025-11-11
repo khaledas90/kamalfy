@@ -181,7 +181,7 @@ export function HeroSection() {
                     {word}
                     {primaryWords.includes(i) && (
                       <motion.span
-                        className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-full"
+                        className="absolute -bottom-3 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-full"
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: 1 }}
                         transition={{ delay: i * 0.1 + 0.5, duration: 0.6 }}
@@ -214,7 +214,7 @@ export function HeroSection() {
                     {word}
                     {primaryWords.includes(i + 2) && (
                       <motion.span
-                        className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-full"
+                        className="absolute -bottom-3 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-full"
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: 1 }}
                         transition={{
