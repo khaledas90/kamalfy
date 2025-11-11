@@ -591,6 +591,136 @@
           "content": "نحتفظ بالحق في تعديل أو تعليق أو إيقاف أي جزء من خدماتنا في أي وقت دون إشعار مسبق."
         }
       }
+    },
+    "auth": {
+      "login": {
+        "title": "Welcome Back",
+        "description": "Please enter your information to log into your account",
+        "email": {
+          "label": "Email Address",
+          "placeholder": "Enter your email address",
+          "required": "Email is required.",
+          "invalid": "Please enter a valid email address."
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "Enter your password",
+          "required": "Password is required.",
+          "minLength": "Password must be at least 6 characters long.",
+          "forgot": "Forgot Password?",
+          "show": "Show password",
+          "hide": "Hide password"
+        },
+        "rememberMe": "Remember me for 30 days",
+        "submit": "Sign In",
+        "submitting": "Logging in...",
+        "noAccount": "Don't have an account?",
+        "signUp": "Sign up"
+      },
+      "register": {
+        "title": "Create Your Account",
+        "description": "Set up your store in just a few simple steps",
+        "steps": {
+          "personalInfo": "Personal Information",
+          "storeSetup": "Store Setup",
+          "choosePlan": "Choose Plan",
+          "review": "Review"
+        },
+        "personalInfo": {
+          "name": {
+            "label": "Full Name",
+            "placeholder": "Enter your full name",
+            "required": "Name is required.",
+            "minLength": "Name must be at least 2 characters."
+          },
+          "email": {
+            "label": "Email Address",
+            "placeholder": "Enter your email address",
+            "required": "Email is required.",
+            "invalid": "Please enter a valid email address."
+          },
+          "phone": {
+            "label": "Phone Number",
+            "placeholder": "Enter your phone number",
+            "required": "Phone number is required.",
+            "invalid": "Please enter a valid phone number."
+          },
+          "password": {
+            "label": "Password",
+            "placeholder": "Enter your password",
+            "required": "Password is required.",
+            "minLength": "Password must be at least 8 characters long."
+          },
+          "confirmPassword": {
+            "label": "Confirm Password",
+            "placeholder": "Confirm your password",
+            "required": "Please confirm your password.",
+            "mismatch": "Passwords do not match."
+          }
+        },
+        "storeSetup": {
+          "storeName": {
+            "label": "Store Name",
+            "placeholder": "Enter your store name",
+            "required": "Store name is required.",
+            "minLength": "Store name must be at least 2 characters."
+          },
+          "subDomain": {
+            "label": "Subdomain",
+            "placeholder": "yourstore",
+            "required": "Subdomain is required.",
+            "invalid": "Subdomain can only contain lowercase letters, numbers, and hyphens.",
+            "minLength": "Subdomain must be at least 3 characters."
+          },
+          "logo": {
+            "label": "Store Logo",
+            "upload": "Upload Logo",
+            "change": "Change Logo",
+            "preview": "Logo preview"
+          }
+        },
+        "planSelection": {
+          "title": "Choose Your Plan",
+          "description": "Select the plan that best fits your business needs",
+          "required": "Please select a plan.",
+          "mostPopular": "Most Popular"
+        },
+        "review": {
+          "title": "Review Your Information",
+          "description": "Please review your information before submitting",
+          "fullName": "Full Name",
+          "email": "Email",
+          "phoneNumber": "Phone Number",
+          "storeName": "Store Name",
+          "subdomain": "Subdomain",
+          "plan": "Plan",
+          "status": "Status",
+          "logo": "Logo",
+          "active": "Active",
+          "submitting": "Submitting your registration..."
+        },
+        "navigation": {
+          "previous": "Previous",
+          "next": "Next",
+          "createAccount": "Create Account",
+          "creating": "Creating Account..."
+        },
+        "hasAccount": "Already have an account?",
+        "signIn": "Sign in",
+        "passwordMismatch": "Passwords do not match.",
+        "success": {
+          "title": "Registration Successful!",
+          "description": "Your account has been created successfully. Redirecting..."
+        },
+        "error": {
+          "title": "Registration Failed",
+          "default": "An error occurred during registration. Please try again."
+        },
+        "validation": {
+          "required": "Please fill in all required fields.",
+          "error": "Validation Error"
+        }
+      }
     }
   }
 }

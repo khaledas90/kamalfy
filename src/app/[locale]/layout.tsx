@@ -83,10 +83,16 @@ export default async function RootLayout({
       <html
         lang={locale}
         dir={locale === "ar" ? "rtl" : "ltr"}
-        className={`${locale === "ar" ? cairo.variable : _geist.variable} ${_geistMono.variable}`}
+        className={`${locale === "ar" ? cairo.variable : _geist.variable} ${
+          _geistMono.variable
+        }`}
         suppressHydrationWarning
       >
-        <body className={`antialiased ${locale === "ar" ? "[font-family:var(--font-cairo)]" : ""}`}>
+        <body
+          className={`antialiased ${
+            locale === "ar" ? "[font-family:var(--font-cairo)]" : ""
+          }`}
+        >
           <Providers>
             <ThemeProvider
               attribute="class"
@@ -95,11 +101,10 @@ export default async function RootLayout({
               forcedTheme="light"
               disableTransitionOnChange
             >
-              <Header />
-              <SonnerToaster richColors position="top-right" />
+              {/* <SonnerToaster richColors position="top-right" /> */}
               <Toaster />
+              {/* <Toaster richColors position="top-right" /> */}
               <SidebarProvider>{children}</SidebarProvider>
-              <Footer />
             </ThemeProvider>
           </Providers>
         </body>
