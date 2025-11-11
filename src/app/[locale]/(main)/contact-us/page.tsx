@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useTranslations } from "next-intl";
 import {
   headerContainerVariants,
   headerVariants,
@@ -13,6 +14,7 @@ import {
 } from "../../../../utils/animations";
 
 export default function ContactUsPage() {
+  const t = useTranslations("common.contactPage");
   return (
     <main className="w-full min-h-screen pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,14 +30,13 @@ export default function ContactUsPage() {
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4"
             variants={headerVariants}
           >
-            Get in Touch
+            {t("title")}
           </motion.h1>
           <motion.p
             className="text-lg text-muted-foreground max-w-2xl mx-auto"
             variants={headerVariants}
           >
-            Have questions? We'd love to hear from you. Send us a message and
-            we'll respond as soon as possible.
+            {t("description")}
           </motion.p>
         </motion.div>
 
@@ -49,7 +50,7 @@ export default function ContactUsPage() {
             className="bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8"
           >
             <h2 className="text-2xl font-bold text-foreground mb-6">
-              Send us a message
+              {t("form.title")}
             </h2>
             <form className="space-y-6">
               <div>
@@ -57,12 +58,12 @@ export default function ContactUsPage() {
                   htmlFor="name"
                   className="block text-sm font-medium text-foreground mb-2"
                 >
-                  Name
+                  {t("form.name")}
                 </label>
                 <Input
                   id="name"
                   type="text"
-                  placeholder="Your name"
+                  placeholder={t("form.namePlaceholder")}
                   className="w-full"
                 />
               </div>
@@ -71,12 +72,12 @@ export default function ContactUsPage() {
                   htmlFor="email"
                   className="block text-sm font-medium text-foreground mb-2"
                 >
-                  Email
+                  {t("form.email")}
                 </label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="your.email@example.com"
+                  placeholder={t("form.emailPlaceholder")}
                   className="w-full"
                 />
               </div>
@@ -85,12 +86,12 @@ export default function ContactUsPage() {
                   htmlFor="subject"
                   className="block text-sm font-medium text-foreground mb-2"
                 >
-                  Subject
+                  {t("form.subject")}
                 </label>
                 <Input
                   id="subject"
                   type="text"
-                  placeholder="What's this about?"
+                  placeholder={t("form.subjectPlaceholder")}
                   className="w-full"
                 />
               </div>
@@ -99,18 +100,18 @@ export default function ContactUsPage() {
                   htmlFor="message"
                   className="block text-sm font-medium text-foreground mb-2"
                 >
-                  Message
+                  {t("form.message")}
                 </label>
                 <textarea
                   id="message"
                   rows={6}
-                  placeholder="Your message..."
+                  placeholder={t("form.messagePlaceholder")}
                   className="w-full min-h-[120px] rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] resize-none"
                 />
               </div>
               <Button size="lg" className="w-full">
                 <Send className="w-4 h-4 mr-2" />
-                Send Message
+                {t("form.submit")}
               </Button>
             </form>
           </motion.div>
@@ -125,7 +126,7 @@ export default function ContactUsPage() {
           >
             <div className="bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8">
               <h2 className="text-2xl font-bold text-foreground mb-6">
-                Contact Information
+                {t("info.title")}
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -134,7 +135,7 @@ export default function ContactUsPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">
-                      Email
+                      {t("info.email")}
                     </h3>
                     <p className="text-muted-foreground">
                       support@boostify.com
@@ -148,7 +149,7 @@ export default function ContactUsPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">
-                      Phone
+                      {t("info.phone")}
                     </h3>
                     <p className="text-muted-foreground">+1 (555) 123-4567</p>
                     <p className="text-muted-foreground">
@@ -162,7 +163,7 @@ export default function ContactUsPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">
-                      Address
+                      {t("info.address")}
                     </h3>
                     <p className="text-muted-foreground">
                       123 Business Street
@@ -178,20 +179,20 @@ export default function ContactUsPage() {
 
             <div className="bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8">
               <h3 className="font-semibold text-foreground mb-3">
-                Business Hours
+                {t("info.businessHours")}
               </h3>
               <div className="space-y-2 text-sm text-muted-foreground">
                 <div className="flex justify-between">
-                  <span>Monday - Friday</span>
+                  <span>{t("info.mondayFriday")}</span>
                   <span>9:00 AM - 6:00 PM</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Saturday</span>
+                  <span>{t("info.saturday")}</span>
                   <span>10:00 AM - 4:00 PM</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Sunday</span>
-                  <span>Closed</span>
+                  <span>{t("info.sunday")}</span>
+                  <span>{t("info.closed")}</span>
                 </div>
               </div>
             </div>

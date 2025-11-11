@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Target, Users, Zap, Heart } from "lucide-react";
+import { useTranslations } from "next-intl";
 import {
   headerContainerVariants,
   headerVariants,
@@ -12,38 +13,36 @@ import {
 } from "../../../../utils/animations";
 
 export default function AboutUsPage() {
+  const t = useTranslations("common.aboutPage");
+
   const values = [
     {
       icon: Target,
-      title: "Our Mission",
-      description:
-        "To empower every eCommerce merchant with AI-powered tools that simplify operations and maximize growth.",
+      title: t("values.mission.title"),
+      description: t("values.mission.description"),
       gradient: "from-blue-500/20 to-cyan-500/20",
       iconColor: "text-blue-500",
     },
     {
       icon: Users,
-      title: "Our Team",
-      description:
-        "A diverse group of engineers, designers, and business experts passionate about eCommerce innovation.",
-      gradient: "from-purple-500/20 to-pink-500/20",
-      iconColor: "text-purple-500",
+      title: t("values.team.title"),
+      description: t("values.team.description"),
+      gradient: "from-blue-500/20 to-cyan-500/20",
+      iconColor: "text-blue-500",
     },
     {
       icon: Zap,
-      title: "Innovation",
-      description:
-        "We continuously push boundaries with cutting-edge AI technology to stay ahead of the curve.",
-      gradient: "from-emerald-500/20 to-teal-500/20",
-      iconColor: "text-emerald-500",
+      title: t("values.innovation.title"),
+      description: t("values.innovation.description"),
+      gradient: "from-blue-500/20 to-cyan-500/20",
+      iconColor: "text-blue-500",
     },
     {
       icon: Heart,
-      title: "Customer First",
-      description:
-        "Your success is our success. We're committed to providing exceptional support and value.",
-      gradient: "from-orange-500/20 to-red-500/20",
-      iconColor: "text-orange-500",
+      title: t("values.customer.title"),
+      description: t("values.customer.description"),
+      gradient: "from-blue-500/20 to-cyan-500/20",
+      iconColor: "text-blue-500",
     },
   ];
 
@@ -62,15 +61,13 @@ export default function AboutUsPage() {
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4"
             variants={headerVariants}
           >
-            About Boostify
+            {t("title")}
           </motion.h1>
           <motion.p
             className="text-lg text-muted-foreground max-w-3xl mx-auto"
             variants={headerVariants}
           >
-            We're on a mission to revolutionize eCommerce by making AI-powered
-            tools accessible to merchants of all sizes. Since our founding, we've
-            helped thousands of businesses scale and succeed.
+            {t("description")}
           </motion.p>
         </motion.div>
 
@@ -82,26 +79,11 @@ export default function AboutUsPage() {
           viewport={viewportOnce}
           className="bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 lg:p-12 mb-16"
         >
-          <h2 className="text-3xl font-bold text-foreground mb-6">Our Story</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-6">{t("story.title")}</h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
-            <p>
-              Boostify was born from a simple observation: eCommerce merchants
-              were spending too much time on repetitive tasks and not enough time
-              growing their businesses. We set out to change that.
-            </p>
-            <p>
-              Founded in 2020, we've grown from a small team of passionate
-              developers to a global platform serving over 10,000 merchants
-              worldwide. Our AI-powered solutions have helped businesses recover
-              millions in lost sales and increase conversion rates by an average
-              of 35%.
-            </p>
-            <p>
-              Today, we continue to innovate, bringing cutting-edge AI technology
-              to merchants who want to sell smarter and grow faster. Our platform
-              combines powerful automation, intelligent analytics, and personalized
-              AI assistance to give you everything you need to succeed.
-            </p>
+            <p>{t("story.paragraph1")}</p>
+            <p>{t("story.paragraph2")}</p>
+            <p>{t("story.paragraph3")}</p>
           </div>
         </motion.div>
 
@@ -114,7 +96,7 @@ export default function AboutUsPage() {
           className="mb-16"
         >
           <h2 className="text-3xl font-bold text-foreground text-center mb-12">
-            What We Stand For
+            {t("values.title")}
           </h2>
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {values.map((value, index) => {
@@ -151,32 +133,32 @@ export default function AboutUsPage() {
           className="bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 lg:p-12"
         >
           <h2 className="text-3xl font-bold text-foreground text-center mb-12">
-            By The Numbers
+            {t("stats.title")}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-4xl lg:text-5xl font-bold text-primary mb-2">
                 10K+
               </div>
-              <div className="text-sm text-muted-foreground">Active Merchants</div>
+              <div className="text-sm text-muted-foreground">{t("stats.merchants")}</div>
             </div>
             <div className="text-center">
               <div className="text-4xl lg:text-5xl font-bold text-primary mb-2">
                 150+
               </div>
-              <div className="text-sm text-muted-foreground">Countries</div>
+              <div className="text-sm text-muted-foreground">{t("stats.countries")}</div>
             </div>
             <div className="text-center">
               <div className="text-4xl lg:text-5xl font-bold text-primary mb-2">
                 35%
               </div>
-              <div className="text-sm text-muted-foreground">Avg. Growth</div>
+              <div className="text-sm text-muted-foreground">{t("stats.growth")}</div>
             </div>
             <div className="text-center">
               <div className="text-4xl lg:text-5xl font-bold text-primary mb-2">
                 24/7
               </div>
-              <div className="text-sm text-muted-foreground">Support</div>
+              <div className="text-sm text-muted-foreground">{t("stats.support")}</div>
             </div>
           </div>
         </motion.div>
