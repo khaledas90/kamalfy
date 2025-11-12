@@ -1,6 +1,11 @@
 "use client";
 
-import { Menu, ChevronRight, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import {
+  Menu,
+  ChevronRight,
+  PanelLeftClose,
+  PanelLeftOpen,
+} from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -10,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
-import { UserMenu } from "./UserMenu";
+import { UserDropdown } from "@/components/Layout/header/UserDropdown";
 import { useAllRoutes } from "./ItemLinks";
 // import {usePermissions} from "@/components/permissions/ScreensPermissionsContext";
 import { useState, useEffect } from "react";
@@ -33,15 +38,13 @@ interface Props {
 
 export default function Header({
   isMobileNavOpen = false,
-  onMobileNavToggle = () => { },
+  onMobileNavToggle = () => {},
   isRTL = false,
   isSidebarCollapsed = true,
-  onSidebarToggle = () => { },
+  onSidebarToggle = () => {},
 }: Props) {
-  // const { can } = usePermissions();
   const routes = useAllRoutes();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
-  // Reset expanded items when mobile nav closes
   useEffect(() => {
     if (!isMobileNavOpen) {
       setExpandedItems([]);
@@ -51,14 +54,15 @@ export default function Header({
   const isActive = (href?: string): boolean => {
     if (!href) return false;
     if (typeof window === "undefined") return false;
-    const basePath = window.location.pathname.split("/").slice(2).join("/") || "";
+    const basePath =
+      window.location.pathname.split("/").slice(2).join("/") || "";
     return `/${basePath}` === href;
   };
 
   const toggleExpand = (label: string) => {
-    setExpandedItems(prev => 
-      prev.includes(label) 
-        ? prev.filter(item => item !== label)
+    setExpandedItems((prev) =>
+      prev.includes(label)
+        ? prev.filter((item) => item !== label)
         : [...prev, label]
     );
   };
@@ -67,12 +71,6 @@ export default function Header({
     const hasChildren = route.children && route.children.length > 0;
     const isExpanded = expandedItems.includes(route.label);
     const active = isActive(route.href);
-    // const alwaysVisible = route.label === "Settings" || route.label === "Dashboard";
-
-    // Temporarily show all items for testing
-    // if (!alwaysVisible && !can(route.label as ScreenName, "canView")) {
-    //   return null;
-    // }
 
     const paddingInlineStart = `${12 + level * 16}px`;
 
@@ -94,23 +92,25 @@ export default function Header({
               <span className="me-2">{route.icon}</span>
               <span>{route.label}</span>
             </div>
-            <div 
+            <div
               className="transition-transform duration-300 ease-in-out"
-              style={{ 
-                transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
-                transformOrigin: 'center'
+              style={{
+                transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+                transformOrigin: "center",
               }}
             >
               <ChevronRight className="h-4 w-4 ltr:rotate-0 rtl:-rotate-180" />
             </div>
           </button>
-          <div 
+          <div
             className={`overflow-hidden transition-all duration-300 ease-in-out ${
               isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
             }`}
           >
             <div className="mt-1 space-y-1">
-              {route.children?.map((child: RouteType) => renderMobileMenuItem(child, level + 1))}
+              {route.children?.map((child: RouteType) =>
+                renderMobileMenuItem(child, level + 1)
+              )}
             </div>
           </div>
         </div>
@@ -192,7 +192,6 @@ export default function Header({
         </div>
       </Link>
 
-      {/* Desktop Sidebar Toggle Button */}
       <Button
         variant="outline"
         size="icon"
@@ -213,7 +212,7 @@ export default function Header({
       <div className="rtl:mr-auto ltr:ml-auto flex items-center gap-2">
         <div className="flex items-center gap-2">
           <LanguageSwitcher />
-          <UserMenu />
+          <UserDropdown />
         </div>
       </div>
     </header>

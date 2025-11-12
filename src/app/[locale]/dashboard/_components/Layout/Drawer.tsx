@@ -29,7 +29,6 @@ export default function Drawer({
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  // Load expanded items from localStorage on component mount
   useEffect(() => {
     const savedExpandedItems = localStorage.getItem("sidebar-expanded-items");
     if (savedExpandedItems) {
@@ -42,7 +41,6 @@ export default function Drawer({
     }
   }, []);
 
-  // Save expanded items to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem(
       "sidebar-expanded-items",
@@ -50,21 +48,16 @@ export default function Drawer({
     );
   }, [expandedItems]);
 
-  // Initialize GSAP animations and restore expanded state
   useEffect(() => {
-    // Set initial state for all dropdowns
     const currentRefs = dropdownRefs.current;
 
-    // Use a timeout to ensure DOM is ready
     const timer = setTimeout(() => {
       Object.entries(currentRefs).forEach(([label, element]) => {
         if (element) {
           const isExpanded = expandedItems.includes(label);
           if (isExpanded) {
-            // Set to expanded state immediately
             gsap.set(element, { height: "auto", opacity: 1 });
           } else {
-            // Set to collapsed state
             gsap.set(element, { height: 0, opacity: 0 });
           }
         }
@@ -73,7 +66,6 @@ export default function Drawer({
 
     return () => {
       clearTimeout(timer);
-      // Cleanup GSAP animations on unmount
       gsap.killTweensOf(Object.values(currentRefs));
     };
   }, [expandedItems]);
@@ -100,19 +92,14 @@ export default function Drawer({
         },
       });
     } else {
-      // Expand animation
       setExpandedItems((prev) => [...prev, label]);
 
-      // Use a small delay to ensure the DOM is updated
       setTimeout(() => {
         if (dropdownElement) {
-          // Set initial state
           gsap.set(dropdownElement, { height: 0, opacity: 0 });
 
-          // Get the natural height
           const naturalHeight = dropdownElement.scrollHeight;
 
-          // Animate to natural height with stagger for children
           gsap.fromTo(
             dropdownElement,
             { height: 0, opacity: 0 },
@@ -127,7 +114,6 @@ export default function Drawer({
             }
           );
 
-          // Animate children with stagger
           const children = dropdownElement.querySelectorAll(".menu-item");
           gsap.fromTo(
             children,
@@ -150,7 +136,7 @@ export default function Drawer({
     const hasChildren = route.children && route.children.length > 0;
     const isExpanded = expandedItems.includes(route.label);
     const active = isActive(route.href);
-    const shouldShow = true; // Always show for testing
+    const shouldShow = true;
 
     if (!shouldShow) {
       return null;

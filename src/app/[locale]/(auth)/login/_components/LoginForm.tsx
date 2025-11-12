@@ -13,10 +13,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Loader2, Mail, Lock, Sparkles } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import { useLogin } from "@/store/queries/useAuth";
+import { useToast } from "@/components/ui/use-toast";
 import {
   cardVariants,
   containerVariants,
@@ -30,11 +31,11 @@ interface SignInFormData {
 }
 
 export default function LoginForm() {
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
   const t = useTranslations("common.auth.login");
+  const { toast } = useToast();
+  const { mutate: loginMutation, isPending } = useLogin();
 
   const {
     register,
@@ -43,21 +44,53 @@ export default function LoginForm() {
   } = useForm<SignInFormData>();
 
   const onSubmit = async (data: SignInFormData) => {
-    setLoading(true);
     setError("");
 
-    // try {
-    //   const tokenResult = await userCreds.user.getIdTokenResult();
-    //   setCookie("token", tokenResult.token);
-    //   toast.success("Login successful", {
-    //     description: "You have successfully logged in.",
-    //   });
-    //   router.push("/admin");
-    // } catch (error: any) {
-    //   setError(getFirebaseErrorMessage(error.code));
-    // } finally {
-    //   setLoading(false);
-    // }
+    loginMutation(
+      {
+        email: data.email,
+        password: data.password,
+        rememberMe: data.rememberMe,
+      },
+      {
+        onSuccess: () => {
+          toast({
+            title: t("success.title") || "Login Successful!",
+            description:
+              t("success.description") ||
+              "You have successfully logged in. Redirecting...",
+            variant: "default",
+            duration: 3000,
+          });
+        },
+        onError: (error: any) => {
+          let errorMessage =
+            t("error.default") ||
+            "An error occurred during login. Please try again.";
+
+          if (error?.response?.data) {
+            const errorData = error.response.data;
+            if (typeof errorData === "string") {
+              errorMessage = errorData;
+            } else if (errorData.message) {
+              errorMessage = errorData.message;
+            } else if (errorData.error) {
+              errorMessage = errorData.error;
+            }
+          } else if (error?.message) {
+            errorMessage = error.message;
+          }
+
+          setError(errorMessage);
+          toast({
+            variant: "destructive",
+            title: t("error.title") || "Login Failed",
+            description: errorMessage,
+            duration: 5000,
+          });
+        },
+      }
+    );
   };
 
   return (
@@ -284,10 +317,10 @@ export default function LoginForm() {
               <motion.div variants={slideUpVariants} className="pt-2">
                 <Button
                   type="submit"
-                  disabled={loading}
+                  disabled={isPending}
                   className="w-full h-14 gradient-bg text-white border-0 hover:opacity-90 transition-all font-semibold text-lg shadow-lg shadow-primary/25"
                 >
-                  {loading ? (
+                  {isPending ? (
                     <>
                       <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                       {t("submitting")}

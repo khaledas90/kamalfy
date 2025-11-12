@@ -615,7 +615,15 @@
         "submit": "Sign In",
         "submitting": "Logging in...",
         "noAccount": "Don't have an account?",
-        "signUp": "Sign up"
+        "signUp": "Sign up",
+        "success": {
+          "title": "تم تسجيل الدخول بنجاح!",
+          "description": "لقد قمت بتسجيل الدخول بنجاح. جاري إعادة التوجيه..."
+        },
+        "error": {
+          "title": "فشل تسجيل الدخول",
+          "default": "حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى."
+        }
       },
       "register": {
         "title": "Create Your Account",

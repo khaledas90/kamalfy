@@ -615,7 +615,15 @@
         "submit": "Sign In",
         "submitting": "Logging in...",
         "noAccount": "Don't have an account?",
-        "signUp": "Sign up"
+        "signUp": "Sign up",
+        "success": {
+          "title": "Login Successful!",
+          "description": "You have successfully logged in. Redirecting..."
+        },
+        "error": {
+          "title": "Login Failed",
+          "default": "An error occurred during login. Please try again."
+        }
       },
       "register": {
         "title": "Create Your Account",

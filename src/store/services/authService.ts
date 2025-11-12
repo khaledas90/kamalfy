@@ -12,12 +12,35 @@ export interface User {
   status?: string;
   createdAt?: string;
   updatedAt?: string;
+  UID?: string;
+  template?: string;
 }
 
 export interface LoginRequest {
   email: string;
   password: string;
   rememberMe?: boolean;
+}
+
+export interface Merchant {
+  UID: string;
+  name: string;
+  template: string;
+  email: string;
+  phoneNumber: string;
+  storeName: string;
+  logo: string;
+  status: string;
+}
+
+export interface LoginApiResponse {
+  success: boolean;
+  message: string;
+  data: {
+    success: boolean;
+    merchant: Merchant;
+    token: string;
+  };
 }
 
 export interface LoginResponse {
@@ -38,9 +61,18 @@ export interface RegisterRequest {
   status?: string;
 }
 
+export interface RegisterApiResponse {
+  success: boolean;
+  message: string;
+  data: {
+    merchant: Merchant;
+    token?: string; // Token might not be present in register response
+  };
+}
+
 export interface RegisterResponse {
   user: User;
-  token: string;
+  token?: string;
   message?: string;
 }
 
@@ -63,12 +95,37 @@ export interface ResetPasswordResponse {
 }
 
 export const authService = {
-  login: async (payload: LoginRequest): Promise<LoginResponse> => {
-    const { data } = await mainApi.post<LoginResponse>(`/auth/login`, payload);
-    return data;
+  login: async (
+    payload: LoginRequest
+  ): Promise<LoginResponse & { apiResponse: LoginApiResponse }> => {
+    const { data } = await mainApi.post<LoginApiResponse>(
+      `/merchant-auth/login`,
+      payload
+    );
+
+    const merchant = data.data.merchant;
+    const user: User = {
+      id: merchant.UID,
+      name: merchant.name,
+      email: merchant.email,
+      phoneNumber: merchant.phoneNumber,
+      storeName: merchant.storeName,
+      logo: merchant.logo,
+      status: merchant.status,
+      UID: merchant.UID,
+      template: merchant.template,
+    };
+
+    return {
+      user,
+      token: data.data.token,
+      apiResponse: data,
+    };
   },
 
-  register: async (payload: RegisterRequest): Promise<RegisterResponse> => {
+  register: async (
+    payload: RegisterRequest
+  ): Promise<RegisterResponse & { apiResponse: RegisterApiResponse }> => {
     const formData = new FormData();
     formData.append("name", payload.name);
     formData.append("email", payload.email);
@@ -84,7 +141,7 @@ export const authService = {
       formData.append("status", payload.status);
     }
 
-    const { data } = await mainApi.post<RegisterResponse>(
+    const { data } = await mainApi.post<RegisterApiResponse>(
       `/merchant-auth/signup`,
       formData,
       {
@@ -93,7 +150,26 @@ export const authService = {
         },
       }
     );
-    return data;
+
+    const merchant = data.data.merchant;
+    const user: User = {
+      id: merchant.UID,
+      name: merchant.name,
+      email: merchant.email,
+      phoneNumber: merchant.phoneNumber,
+      storeName: merchant.storeName,
+      logo: merchant.logo,
+      status: merchant.status,
+      UID: merchant.UID,
+      template: merchant.template,
+    };
+
+    return {
+      user,
+      token: data.data.token,
+      message: data.message,
+      apiResponse: data,
+    };
   },
 
   forgotPassword: async (

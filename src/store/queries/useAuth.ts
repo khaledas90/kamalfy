@@ -11,6 +11,7 @@ import {
   ForgotPasswordRequest,
   ResetPasswordRequest,
 } from "../services";
+import { useAuth } from "@/contexts/AuthContext";
 
 export const authKeys = {
   all: ["auth"] as const,
@@ -31,10 +32,15 @@ export const useUser = () => {
 export const useLogin = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const { setAuthData } = useAuth();
 
   return useMutation({
     mutationFn: (payload: LoginRequest) => authService.login(payload),
     onSuccess: (data, variables) => {
+      if (data.apiResponse) {
+        setAuthData(data.apiResponse);
+      }
+
       setCookie("token", data.token, {
         maxAge: variables.rememberMe ? 30 * 24 * 60 * 60 : 24 * 60 * 60, // 30 days or 1 day
         path: "/",
@@ -59,14 +65,22 @@ export const useLogin = () => {
 export const useRegister = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const { setRegisterData } = useAuth();
 
   return useMutation({
     mutationFn: (payload: RegisterRequest) => authService.register(payload),
     onSuccess: (data) => {
-      setCookie("token", data.token, {
-        maxAge: 30 * 24 * 60 * 60, // 30 days
-        path: "/",
-      });
+      if (data.apiResponse) {
+        setRegisterData(data.apiResponse);
+      }
+
+      if (data.token) {
+        setCookie("token", data.token, {
+          maxAge: 30 * 24 * 60 * 60, // 30 days
+          path: "/",
+        });
+      }
+
       queryClient.setQueryData(authKeys.user(), data.user);
       queryClient.invalidateQueries({ queryKey: authKeys.user() });
       router.push("/dashboard");
@@ -102,10 +116,12 @@ export const useResetPassword = () => {
 export const useLogout = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const { clearAuthData } = useAuth();
 
   return useMutation({
     mutationFn: () => authService.logout(),
     onSuccess: () => {
+      clearAuthData(); // Clear context
       deleteCookie("token");
       deleteCookie("refreshToken");
       queryClient.clear();
@@ -113,6 +129,7 @@ export const useLogout = () => {
     },
     onError: (error: any) => {
       console.error("Logout error:", error);
+      clearAuthData(); // Clear context even on error
       deleteCookie("token");
       deleteCookie("refreshToken");
       queryClient.clear();
